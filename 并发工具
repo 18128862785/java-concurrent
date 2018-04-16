@@ -1,0 +1,7 @@
+1、同步器：
+同步器是一些使线程能够等待另一个线程的对象，允许它们协调动作。最常用的同步器是CountDownLatch和Semaphore，不常用的是Barrier 和Exchanger
+2、执行器
+callable future executor
+3、并发集合
+4、Fork/join框架
+5、atomic包
