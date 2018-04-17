@@ -1,5 +1,14 @@
 Synchronized及其实现原理
-保证互斥性
-保证可见性
-保证顺序性
+1、保证互斥性
+线程粒度持有对象锁
+注意区别：类锁和对象锁
+synchronized(类) or synchronized static 方法
+类锁，
+synchronized(this)
+类锁对所有的
+2、保证可见性
+获取锁时候，线程会重新从主内存中将数据同步到本地工作内存
+释放锁，动作相反
+3、保证顺序性
+锁代码禁止指令重排序
 https://blog.csdn.net/java_2017_csdn/article/details/76155964
