@@ -7,6 +7,10 @@ http://dl.iteye.com/upload/attachment/0083/2584/b7b2472f-6b93-3f85-9e44-29a9ff77
 同时导致线程挂起。
 而volatile 不具有原子性，因此同步还是需要锁机制
 所以就有CAS，乐观锁的一种机制
+
+利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，
+因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。
+
 2、什么是CAS？
 compare and swap  比较和交换
 CAS有三个操作数：内存值V、旧的预期值A、要修改的值B，当且仅当预期值A和内存值V相同时，将内存值修改为B并返回true，否则什么都不做并返回false。
