@@ -1,0 +1,31 @@
+1、java内存模型
+  Java内存模型规定了所有的变量都存储在主内存中。每条线程中还有自己的工作内存，线程的工作内存中保存了被该线程所使用到的变量
+（这些变量是从主内存中拷贝而来）。线程对变量的所有操作（读取，赋值）都必须在工作内存中进行。不同线程之间也无法直接访问对
+方工作内存中的变量，线程间变量值的传递均需要通过主内存来完成。
+
+2、并发编程的三大概念：原子性，有序性，可见性。
+  1)Java内存模型只保证了基本读取和赋值是原子性操作，如果要实现更大范围操作的原子性，可以通过synchronized和Lock来实现。
+  2)Java内存模型具备一些先天的“有序性”。在Java里面，可以通过volatile关键字来保证一定的“有序性”。另外可以通过synchronized和Lock来保证有序性，
+  很显然，synchronized和Lock保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性。
+  3)Java提供了volatile关键字来保证可见性。当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其
+  他线程需要读取时，它会去内存中读取新值。通过synchronized和Lock也能够保证可见性.
+3、volatile vs synchronized区别
+volatile 不能保证原子性
+volatile 只能修身变量，不能修身方法
+volatile不需要锁住线程，性能高于synchronized，但是不能替代synchronized
+
+双重检索double-check
+
+public class Singleton{
+  private volatile Singleton instance;
+  private Singleton{};
+  public Singleton getInstance(){
+    if(instance==null){
+       synchronized(this){
+          if(instance==null){
+              instance = new Singleton();
+           }
+       }
+    }
+   }
+}
